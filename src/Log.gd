@@ -26,33 +26,33 @@ func log(message, type = LOG_LEVEL.INFO) -> void:
 # @param  string  debugInfo
 func info(message, debugInfo = '') -> void:
 	if logLevel <= LOG_LEVEL.INFO:
-		var write = make_log_tag("INFO", "cornflower", debugInfo)
+		var write = make_log_tag("INFO", "#356080", debugInfo)
 		write_tagged_log(write, message)
 
 # @param  string  message
 # @param  string  debugInfo
 func warn(message, debugInfo = '') -> void:
 	if logLevel <= LOG_LEVEL.WARNING:
-		var write = make_log_tag("WARNING", "yellow", debugInfo)
+		var write = make_log_tag("WARNING", "#FBF14A", debugInfo)
 		write_tagged_log(write, message)
 
 # @param  string  message
 # @param  string  debugInfo
 func error(message, debugInfo = '') -> void:
 	if logLevel <= LOG_LEVEL.ERROR:
-		var write = make_log_tag("ERROR", "red", debugInfo)
+		var write = make_log_tag("ERROR", "#D55B65", debugInfo)
 		write_tagged_log(write, message)
 
 func network(message, debugInfo = ''):
 	if logLevel <= LOG_LEVEL.INFO:
-		var write = make_log_tag("NET", "teal", debugInfo)
+		var write = make_log_tag("NET", "#356080", debugInfo)
 		write_tagged_log(write, message)
 
 # @param  string  message
 # @param  string  debugInfo
 func debug(message, debugInfo = '') -> void:
 	if Console.debugMode:
-		var write = make_log_tag("DEBUG", "olivedrab", debugInfo)
+		var write = make_log_tag("DEBUG", "#6EBC3D", debugInfo)
 		write_tagged_log(write, message)
 	
 func make_log_tag(name, color, debugInfo = '') -> String:

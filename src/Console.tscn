@@ -1,10 +1,13 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://console/src/Console.gd" type="Script" id=1]
 [ext_resource path="res://console/assets/fonts/RobotoMono/RobotoMono-BoldItalic.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://console/assets/fonts/RobotoMono/RobotoMono-Italic.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://console/assets/fonts/RobotoMono/RobotoMono-Bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://console/assets/fonts/RobotoMono/RobotoMono-Regular.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.14902, 0.145098, 0.211765, 0.941176 )
 
 [sub_resource type="Animation" id=1]
 length = 0.25
@@ -33,15 +36,27 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.25 ),
+"times": PoolRealArray( 0.1, 0.25 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -300 ) ]
+}
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxEmpty" id=10]
 
-[sub_resource type="StyleBoxEmpty" id=3]
+[sub_resource type="StyleBoxEmpty" id=11]
 
 [sub_resource type="DynamicFont" id=4]
 size = 14
@@ -59,9 +74,17 @@ font_data = ExtResource( 4 )
 size = 14
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxFlat" id=8]
-bg_color = Color( 0.0132904, 0.186026, 0.261719, 0.701458 )
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0, 0, 0, 0.501961 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.396078, 0.6, 0.988235, 1 )
 border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.054902, 0.054902, 0.054902, 0.501961 )
 
 [sub_resource type="DynamicFont" id=9]
 size = 14
@@ -77,10 +100,12 @@ action_history_up = "ui_up"
 action_history_down = "ui_down"
 
 [node name="ConsoleBox" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.891039 )
 self_modulate = Color( 1, 1, 1, 0.8 )
 anchor_right = 1.0
 anchor_bottom = 0.5
 mouse_filter = 2
+custom_styles/panel = SubResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ConsoleBox"]
 anims/fade = SubResource( 1 )
@@ -92,7 +117,7 @@ mouse_filter = 2
 
 [node name="ConsoleText" type="RichTextLabel" parent="ConsoleBox/Container"]
 margin_right = 1024.0
-margin_bottom = 267.0
+margin_bottom = 277.0
 focus_neighbour_left = NodePath("../LineEdit")
 focus_neighbour_top = NodePath("../LineEdit")
 focus_neighbour_right = NodePath("../LineEdit")
@@ -101,8 +126,8 @@ focus_next = NodePath("../LineEdit")
 focus_previous = NodePath("../LineEdit")
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/focus = SubResource( 2 )
-custom_styles/normal = SubResource( 3 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
 custom_fonts/bold_italics_font = SubResource( 4 )
 custom_fonts/italics_font = SubResource( 5 )
 custom_fonts/bold_font = SubResource( 6 )
@@ -111,9 +136,10 @@ custom_constants/line_separation = 4
 bbcode_enabled = true
 
 [node name="LineEdit" type="LineEdit" parent="ConsoleBox/Container"]
-margin_top = 271.0
-margin_right = 1024.0
-margin_bottom = 300.0
+margin_left = 1.0
+margin_top = 281.0
+margin_right = 1023.0
+margin_bottom = 299.0
 focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath(".")
 focus_neighbour_right = NodePath(".")
@@ -121,6 +147,7 @@ focus_neighbour_bottom = NodePath(".")
 focus_next = NodePath(".")
 focus_previous = NodePath(".")
 size_flags_horizontal = 3
-custom_styles/focus = SubResource( 8 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/normal = SubResource( 13 )
 custom_fonts/font = SubResource( 9 )
 
