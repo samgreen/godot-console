@@ -1,74 +1,66 @@
 extends Reference
 
 enum LOG_LEVEL {
-  INFO,
-  WARNING,
-  ERROR,
-  NONE
+	INFO,
+	WARNING,
+	ERROR,
+	NONE
 }
 
-
 # @var  int
-var logLevel = LOG_LEVEL.WARNING setget setLogLevel
-
+var logLevel = LOG_LEVEL.INFO setget setLogLevel
 
 # @param  int  inlogLevel
-func setLogLevel(inlogLevel = LOG_LEVEL.INFO):  # void
-  logLevel = inlogLevel
-
+func setLogLevel(inlogLevel = LOG_LEVEL.INFO) -> void:
+	logLevel = inlogLevel
 
 # @param  string  message
 # @param  int     type
-func log(message, type = LOG_LEVEL.INFO):  # void
-  match type:
-    LOG_LEVEL.INFO:    info(message)
-    LOG_LEVEL.WARNING: warn(message)
-    LOG_LEVEL.ERROR:   error(message)
-
-
-# @param  string  message
-# @param  string  debugInfo
-func info(message, debugInfo = ''):  # void
-  if logLevel <= LOG_LEVEL.INFO:
-    var write = '[color=blue][INFO][/color] '
-
-    if Console.debugMode and debugInfo:
-      write += str(debugInfo) + ': '
-
-    Console.writeLine(write + str(message))
-
+func log(message, type = LOG_LEVEL.INFO) -> void:
+	match type:
+		LOG_LEVEL.INFO:    info(message)
+		LOG_LEVEL.WARNING: warn(message)
+		LOG_LEVEL.ERROR:   error(message)
 
 # @param  string  message
 # @param  string  debugInfo
-func warn(message, debugInfo = ''):  # void
-  if logLevel <= LOG_LEVEL.WARNING:
-    var write = '[color=yellow][WARNING][/color] '
-
-    if Console.debugMode and debugInfo:
-      write += str(debugInfo) + ': '
-
-    Console.writeLine(write + str(message))
-
+func info(message, debugInfo = '') -> void:
+	if logLevel <= LOG_LEVEL.INFO:
+		var write = make_log_tag("INFO", "cornflower", debugInfo)
+		write_tagged_log(write, message)
 
 # @param  string  message
 # @param  string  debugInfo
-func error(message, debugInfo = ''):  # void
-  if logLevel <= LOG_LEVEL.ERROR:
-    var write = '[color=red][ERROR][/color] '
-
-    if Console.debugMode and debugInfo:
-      write += str(debugInfo) + ': '
-
-    Console.writeLine(write + str(message))
-
+func warn(message, debugInfo = '') -> void:
+	if logLevel <= LOG_LEVEL.WARNING:
+		var write = make_log_tag("WARNING", "yellow", debugInfo)
+		write_tagged_log(write, message)
 
 # @param  string  message
 # @param  string  debugInfo
-func debug(message, debugInfo = ''):  # void
-  if Console.debugMode:
-    var write = '[color=green][DEBUG][/color] '
+func error(message, debugInfo = '') -> void:
+	if logLevel <= LOG_LEVEL.ERROR:
+		var write = make_log_tag("ERROR", "red", debugInfo)
+		write_tagged_log(write, message)
 
-    if debugInfo:
-      write += str(debugInfo) + ': '
+func network(message, debugInfo = ''):
+	if logLevel <= LOG_LEVEL.INFO:
+		var write = make_log_tag("NET", "teal", debugInfo)
+		write_tagged_log(write, message)
 
-    Console.writeLine(write + str(message))
+# @param  string  message
+# @param  string  debugInfo
+func debug(message, debugInfo = '') -> void:
+	if Console.debugMode:
+		var write = make_log_tag("DEBUG", "olivedrab", debugInfo)
+		write_tagged_log(write, message)
+	
+func make_log_tag(name, color, debugInfo = '') -> String:
+	var tag = "[color=%s][%s][/color] " % [color, name]
+	if Console.debugMode:
+		tag += " {" + str(debugInfo) + "} "
+	return tag
+
+func write_tagged_log(tag, message):
+	Console.writeLine(tag + str(message))
+	

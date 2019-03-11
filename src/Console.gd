@@ -9,13 +9,10 @@ const IntRange = preload('Types/IntRange.gd')
 const FloatRange = preload('Types/FloatRange.gd')
 const Filter = preload('Types/Filter.gd')
 
-
-enum CMDTYPE \
-{
+enum CMDTYPE {
   VARIABLE,
   METHOD
 }
-
 
 # @var  Commands
 var _Commands = preload('Commands.gd').new()

@@ -1,6 +1,4 @@
-
 extends Reference
-
 
 # @var  string
 var _filter = null
