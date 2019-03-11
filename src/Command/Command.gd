@@ -1,7 +1,4 @@
-
 extends Reference
-
-const Argument = preload('../Argument/Argument.gd')
 
 
 # @var  string
@@ -44,7 +41,7 @@ func run(inArgs):  # int
     if argAssig == FAILED:
       Console.Log.warn('Argument ' + str(i) + ': expected ' + _arguments[i]._type._name)
       return FAILED
-    elif argAssig == Argument.CANCELED:
+    elif argAssig == ConsoleArgument.ARGASSIG.CANCELED:
       return OK
 
     args.append(_arguments[i].value)
@@ -137,15 +134,15 @@ static func build(alias, params):  # Command
     return
 
   # Set arguments
-  if params.target._type == Console.Callback.VARIABLE and params.has('args'):
+  if params.target._type == Console.Callback.TYPE.VARIABLE and params.has('args'):
     # Ignore all arguments except first cause variable takes only one arg
     params.args = [params.args[0]]
 
   if params.has('arg'):
-    params.args = Argument.buildAll([ params.arg ])
+    params.args = ConsoleArgument.buildAll([ params.arg ])
     params.erase('arg')
   elif params.has('args'):
-    params.args = Argument.buildAll(params.args)
+    params.args = ConsoleArgument.buildAll(params.args)
   else:
     params.args = []
 
@@ -158,5 +155,5 @@ static func build(alias, params):  # Command
 
   if !params.has('description'):
     params.description = null
-
-  return new(alias, params.target, params.args, params.description)
+  var Command = load("res://console/src/Command/Command.gd")
+  return Command.new(alias, params.target, params.args, params.description)

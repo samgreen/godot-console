@@ -1,9 +1,6 @@
-
 extends Reference
 
-
-enum TYPE \
-{
+enum LOG_LEVEL {
   INFO,
   WARNING,
   ERROR,
@@ -12,27 +9,27 @@ enum TYPE \
 
 
 # @var  int
-var logLevel = WARNING setget setLogLevel
+var logLevel = LOG_LEVEL.WARNING setget setLogLevel
 
 
 # @param  int  inlogLevel
-func setLogLevel(inlogLevel = INFO):  # void
+func setLogLevel(inlogLevel = LOG_LEVEL.INFO):  # void
   logLevel = inlogLevel
 
 
 # @param  string  message
 # @param  int     type
-func log(message, type = INFO):  # void
+func log(message, type = LOG_LEVEL.INFO):  # void
   match type:
-    INFO:    info(message)
-    WARNING: warn(message)
-    ERROR:   error(message)
+    LOG_LEVEL.INFO:    info(message)
+    LOG_LEVEL.WARNING: warn(message)
+    LOG_LEVEL.ERROR:   error(message)
 
 
 # @param  string  message
 # @param  string  debugInfo
 func info(message, debugInfo = ''):  # void
-  if logLevel <= INFO:
+  if logLevel <= LOG_LEVEL.INFO:
     var write = '[color=blue][INFO][/color] '
 
     if Console.debugMode and debugInfo:
@@ -44,7 +41,7 @@ func info(message, debugInfo = ''):  # void
 # @param  string  message
 # @param  string  debugInfo
 func warn(message, debugInfo = ''):  # void
-  if logLevel <= WARNING:
+  if logLevel <= LOG_LEVEL.WARNING:
     var write = '[color=yellow][WARNING][/color] '
 
     if Console.debugMode and debugInfo:
@@ -56,7 +53,7 @@ func warn(message, debugInfo = ''):  # void
 # @param  string  message
 # @param  string  debugInfo
 func error(message, debugInfo = ''):  # void
-  if logLevel <= ERROR:
+  if logLevel <= LOG_LEVEL.ERROR:
     var write = '[color=red][ERROR][/color] '
 
     if Console.debugMode and debugInfo:

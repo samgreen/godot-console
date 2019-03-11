@@ -1,7 +1,7 @@
-
 extends Reference
 
-const TypesBuilder = preload('../Types/TypesBuilder.gd')
+class_name ConsoleArgument
+
 const BaseType = preload('../Types/BaseType.gd')
 
 
@@ -34,7 +34,7 @@ func setValue(inValue):  # int
 
 
 func getValue():  # Variant
-  return _type.get()
+  return _type.getValue()
 
 
 func toString():  # string
@@ -51,14 +51,14 @@ func toString():  # string
 # @param  string|null   name
 # @param  int|BaseType  type
 static func build(name, type = 0):  # Argument|int
-  # Define arument type
-  if !(typeof(type) == TYPE_OBJECT and type is BaseType):
-    type = TypesBuilder.build(type if typeof(type) == TYPE_INT else 0)
-
-  if typeof(type) == TYPE_INT:
-    return FAILED
-
-  return new(name, type)
+	# Define arument type
+	if !(typeof(type) == TYPE_OBJECT and type is BaseType):
+		type = ConsoleTypesBuilder.build(type if typeof(type) == TYPE_INT else 0)
+	
+	if typeof(type) == TYPE_INT:
+		return FAILED
+	var Argument = load("res://console/src/Argument/Argument.gd")
+	return Argument.new(name, type)
 
 
 # @param  Array  args

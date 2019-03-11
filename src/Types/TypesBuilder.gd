@@ -1,6 +1,6 @@
-
 extends Reference
 
+class_name ConsoleTypesBuilder
 
 const TypesList = [
   preload('Any.gd'),

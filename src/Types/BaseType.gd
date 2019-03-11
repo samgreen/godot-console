@@ -1,6 +1,6 @@
-
 extends Reference
 
+class_name ConsoleBaseType
 
 enum CHECK \
 {
@@ -36,7 +36,7 @@ func check(value):  # int
 
 
 # Returns assigned variable
-func get():  # Variant
+func getValue():  # Variant
   pass
 
 
