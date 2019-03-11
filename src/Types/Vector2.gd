@@ -1,5 +1,7 @@
 
-extends 'BaseType.gd'
+extends ConsoleBaseType
+
+class_name ConsoleVector2
 
 
 # @var  Vector2|null

@@ -1,6 +1,4 @@
-
 extends Reference
-
 
 func _init():
   Console.register('echo', {
@@ -25,16 +23,6 @@ func _init():
     'target': self
   })
 
-  Console.register('quit', {
-    'description': 'Exit application',
-    'target': self
-  })
-
-  Console.register('clear', {
-    'description': 'Clear the terminal',
-    'target': Console
-  })
-
   Console.register('version', {
     'description': 'Shows engine vesion',
     'target': self
@@ -46,9 +34,14 @@ func _init():
     'target': [Engine, 'set_target_fps'],
   })
 
+  Console.register('quit', {
+    'description': 'Exit application',
+    'target': self
+  })
+
 
 # @param  string|null  command
-static func help(command = null):
+static func help(command = null) -> void:
   if command:
     var Command = Console._Commands.get(command)
 
@@ -63,13 +56,11 @@ static func help(command = null):
       "Type [color=#ffff66][url=commands]commands[/url][/color] to get a list of all commands.\n" + \
       "Type [color=#ffff66][url=quit]quit[/url][/color] to exit the application.")
 
-
-static func version():  # void
+static func version() -> void:  
   Console.writeLine(Engine.get_version_info())
-
 
 # This function is called from scripts/console_commands.gd to avoid the
 # "Cannot access self without instance." error
-static func quit():  # void
+static func quit() -> void:
   Console.Log.warn('Quitting application...')
   Console.get_tree().quit()

@@ -1,5 +1,7 @@
 extends ConsoleBaseType
 
+class_name ConsoleTypeFilter
+
 enum MODE {
   ALLOW,
   DENY

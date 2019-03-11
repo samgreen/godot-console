@@ -1,5 +1,7 @@
 extends ConsoleBaseType
 
+class_name ConsoleTypeBool
+
 func _init():
   _name = 'Bool'
   _type = TYPE_BOOL

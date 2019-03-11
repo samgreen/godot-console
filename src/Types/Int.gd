@@ -1,5 +1,7 @@
 extends ConsoleBaseType
 
+class_name ConsoleTypeInt
+
 func _init():
   _name = 'Int'
   _type = TYPE_INT

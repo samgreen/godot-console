@@ -1,6 +1,6 @@
+extends ConsoleBaseRange
 
-extends 'BaseRange.gd'
-
+class_name ConsoleFloatRange
 
 # @param  float  inMinValue
 # @param  float  inMaxValue

@@ -1,6 +1,6 @@
+extends ConsoleBaseType
 
-extends 'BaseType.gd'
-
+class_name ConsoleBaseRange
 
 # @var  int|float
 var _value

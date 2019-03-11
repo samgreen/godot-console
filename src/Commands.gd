@@ -1,8 +1,4 @@
-
 extends Reference
-
-const Command = preload('Command/Command.gd')
-
 
 # @var  CommandAutocomplete
 var Autocomplete = preload('Command/CommandAutocomplete.gd').new() setget _setProtected
@@ -21,7 +17,7 @@ func register(alias, params):  # int
     return FAILED
 
   # Register command
-  var command = Command.build(alias, params)
+  var command = ConsoleCommand.build(alias, params)
 
   if command:
     _commands[alias] = command
@@ -57,16 +53,13 @@ func get(alias):  # Command
     if filteredCommands.size() == 1:
       return _commands[filteredCommands[0]]
 
-
 # @param  string  alias
 func has(alias):  # bool
   return _commands.has(alias)
 
-
 func printAll():  # void
   for command in _commands:
     _commands[command].describe()
-
 
 func _setProtected(value):  # void
   Console.Log.warn('Trying to set a protected variable, ignoring. Provided ' + str(value), \

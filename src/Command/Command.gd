@@ -1,5 +1,6 @@
 extends Reference
 
+class_name ConsoleCommand
 
 # @var  string
 var _alias

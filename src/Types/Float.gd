@@ -1,5 +1,7 @@
 extends ConsoleBaseType
 
+class_name ConsoleTypeFloat
+
 func _init():
   _name = 'Float'
   _type = TYPE_REAL

@@ -1,6 +1,4 @@
-
 extends Reference
-
 
 # @param  Array<string>
 var _history = []
@@ -8,12 +6,10 @@ var _history = []
 # @param  int
 var _current = -1
 
-
 # @param  string  command
 func push(command):  # void
   if _history.size() > 0 and _history[_history.size() - 1] == command:
     return
-
   _history.append(command)
 
 
@@ -33,7 +29,6 @@ func next():  # string
 
 func reset():  # void
   _current = -1
-
 
 func printAll():  # void
   for i in range(_history.size()):

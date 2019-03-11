@@ -3,7 +3,7 @@ extends Reference
 class_name ConsoleTypesBuilder
 
 const TypesList = [
-  preload('Any.gd'),
+  ConsoleTypeAny,
   preload('Bool.gd'),
   preload('Int.gd'),
   preload('Float.gd'),

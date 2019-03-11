@@ -1,6 +1,6 @@
-
 extends Reference
 
+class_name ConsoleRegEx
 
 const _patterns = {
   '1': '^(1|0|true|false)$',  # bool
@@ -12,7 +12,6 @@ const _patterns = {
 
 # @var  Array<RegEx>
 var _compiled = {}
-
 
 # @param  int  type
 func get(type):  # RegEx|int

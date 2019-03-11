@@ -1,10 +1,9 @@
+extends ConsoleBaseRange
 
-extends 'BaseRange.gd'
-
+class_name ConsoleIntRange
 
 # @var  bool
 var rounded = true setget _setRounded
-
 
 # @param  int  inMinValue
 # @param  int  inMaxValue
